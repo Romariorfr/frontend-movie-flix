@@ -1,4 +1,5 @@
 import './App.css';
+import './Assets/styles/custom.scss';
 
 function App() {
   return (

@@ -10,7 +10,7 @@ const Login = () => {
       <h1 className='login-title'>LOGIN</h1>
       <Input value="Email" onChange={inputEvent} />
       <Input value="Senha" onChange={inputEvent} />
-      <button>FAZER LOGIN</button>
+      <button className='btn-login'>FAZER LOGIN</button>
     </div>
   );
 };

@@ -10,6 +10,55 @@ const MoviesId = () => {
         <Input value="Deixe sua avaliação aqui" onChange={() => {}} />
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
       </div>
+      <div className="comentario-container">
+        <div className="comentario-card">
+          <div className="topo-comentario">
+            <h4>*</h4>
+            <h4>Maria Silva</h4>
+          </div>
+          <div className="corpo-comentario">
+            <p>
+              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
+            </p>
+          </div>
+        </div>
+
+        <div className="comentario-card">
+          <div className="topo-comentario">
+            <h4>*</h4>
+            <h4>Maria Silva</h4>
+          </div>
+          <div className="corpo-comentario">
+            <p>
+              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
+            </p>
+          </div>
+        </div>
+
+        <div className="comentario-card">
+          <div className="topo-comentario">
+            <h4>*</h4>
+            <h4>Maria Silva</h4>
+          </div>
+          <div className="corpo-comentario">
+            <p>
+              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
+            </p>
+          </div>
+        </div>
+
+        <div className="comentario-card">
+          <div className="topo-comentario">
+            <h4>*</h4>
+            <h4>Maria Silva</h4>
+          </div>
+          <div className="corpo-comentario">
+            <p>
+              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,13 @@
 import './App.css';
 import './Assets/styles/custom.scss';
 import Header from './Components/Header';
-import Login from './Pages/Login';
+import Movies from './Pages/Movies';
 
 function App() {
   return (
     <>
       <Header />
-      <Login />
+      <Movies/>
     </>
   );
 }

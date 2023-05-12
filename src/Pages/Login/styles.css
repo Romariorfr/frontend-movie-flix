@@ -42,3 +42,11 @@
     height: 65px;
   }
 }
+
+@media(min-width: 768px){
+  .login-container {
+    margin: 40px 145px 145px 145px;
+    padding-bottom: 135px;
+  }
+
+}

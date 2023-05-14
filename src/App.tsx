@@ -1,14 +1,10 @@
+import 'assets/styles/custom.scss';
 import './App.css';
-import './Assets/styles/custom.scss';
-import Header from './Components/Header';
-import Login from './Pages/Login';
+import Routes from './Routes';
 
 function App() {
   return (
-    <>
-      <Header />
-      <Login />
-    </>
+    <Routes />
   );
 }
 

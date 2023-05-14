@@ -1,4 +1,4 @@
-import Input from '../../Components/Input';
+import Input from 'components/Input';
 import './styles.css';
 
 const MoviesId = () => {

@@ -1,8 +1,11 @@
-.login-container {
+.container {
   display: flex;
   flex-direction: row;
-  align-content: space-between;
+  justify-content: center;
   align-items: center;
+}
+
+.card-container {
   margin: 10px;
   padding: 20px;
   background-color: #6c6c6c;
@@ -25,18 +28,27 @@
   background-color: #ffc700;
   border-radius: 4px;
   border: none;
-  margin-top: 30px;
 }
 
-.card-login{
+.card-login {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
+}
+
+.image-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  display: none;
 }
 
 @media (min-width: 576px) {
-  .login-container {
-    margin: 40px 50px 50px 50px;
+  .card-container {
+    margin: 40px;
     padding-bottom: 135px;
   }
 
@@ -50,10 +62,16 @@
   }
 }
 
-@media(min-width: 768px){
-  .login-container {
-    margin: 40px 145px 145px 145px;
-    padding-bottom: 135px;
+@media (min-width: 768px) {
+}
+
+@media (min-width: 1200px) {
+  .image-login {
+    display: flex;
   }
 
+  .card-container {
+    margin: 40px;
+    padding-bottom: 135px;
+  }
 }

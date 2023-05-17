@@ -7,17 +7,21 @@ const Login = () => {
   const inputEvent = () => {};
 
   return (
-    <div className="login-container">
+    <div className='container'>
       <div className="image-login">
+        <h1>Avalie Filmes</h1>
+        <p>Diga o que você achou do seu filme favorito</p>
         <BannerImage />
       </div>
-      <div className="card-login">
-        <h1 className="login-title">LOGIN</h1>
-        <Input value="Email" onChange={inputEvent} />
-        <Input value="Senha" onChange={inputEvent} />
-        <Link to="/movies">
-          <button className="btn-login">FAZER LOGIN</button>
-        </Link>
+      <div className="card-container">
+        <div className="card-login">
+          <h1 className="login-title">LOGIN</h1>
+          <Input value="Email" onChange={inputEvent} />
+          <Input value="Senha" onChange={inputEvent} />
+          <Link to="/movies">
+            <button className="btn-login">FAZER LOGIN</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

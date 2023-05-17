@@ -1,5 +1,6 @@
 import Input from 'components/Input';
 import './styles.css';
+import { ReactComponent as Estrela } from 'assets/images/Star.svg';
 
 const MoviesId = () => {
   return (
@@ -13,7 +14,7 @@ const MoviesId = () => {
       <div className="comentario-container">
         <div className="comentario-card">
           <div className="topo-comentario">
-            <h4>*</h4>
+            <Estrela/>
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -25,7 +26,7 @@ const MoviesId = () => {
 
         <div className="comentario-card">
           <div className="topo-comentario">
-            <h4>*</h4>
+          <Estrela/>
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -37,7 +38,7 @@ const MoviesId = () => {
 
         <div className="comentario-card">
           <div className="topo-comentario">
-            <h4>*</h4>
+          <Estrela/>
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -49,7 +50,7 @@ const MoviesId = () => {
 
         <div className="comentario-card">
           <div className="topo-comentario">
-            <h4>*</h4>
+          <Estrela/>
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">

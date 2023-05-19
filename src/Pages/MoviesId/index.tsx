@@ -5,8 +5,7 @@ import { ReactComponent as Estrela } from 'assets/images/Star.svg';
 const MoviesId = () => {
   return (
     <div className="movieid-container">
-      <h1>Tela de detalhes do filme</h1>
-      <h1>id:1</h1>
+      <h1>Tela de detalhes do filme id:1</h1>
       <div className="avaliacao-card">
         <Input value="Deixe sua avaliação aqui" onChange={() => {}} />
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
@@ -49,7 +48,7 @@ const MoviesId = () => {
         </div>
 
         <div className="comentario-card">
-          <div className="topo-comentario">
+          <div className="topo-comentario"> 
           <Estrela/>
             <h4>Maria Silva</h4>
           </div>

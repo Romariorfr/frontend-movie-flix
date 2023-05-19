@@ -19,7 +19,7 @@ const Login = () => {
         <Input value="Email" onChange={inputEvent} />
         <Input value="Senha" onChange={inputEvent} />
         <Link to="/movies">
-          <button className="btn-login">FAZER LOGIN</button>
+          <button className="btn-login2">FAZER LOGIN</button>
         </Link>
       </div>
     </div>

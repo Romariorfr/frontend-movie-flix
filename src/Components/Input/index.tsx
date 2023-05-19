@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './styles.css';
 
-interface InputProps {
+interface InputProps { 
   value: string;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }

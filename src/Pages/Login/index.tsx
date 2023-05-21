@@ -1,10 +1,26 @@
-import Input from 'components/Input';
-import './styles.css';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
+import Input from 'components/Input';
+
+import './styles.css';
+
+type FormData = {
+  email: string;
+  password: string;
+};
 
 const Login = () => {
-  const inputEvent = () => {};
+  const onSubmit = (formData: FormData) => {
+    console.log(formData.email);
+    console.log(formData.password);
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   return (
     <div className="container">
@@ -14,14 +30,41 @@ const Login = () => {
         <BannerImage />
       </div>
 
-      <div className="card-login">
-        <h1 className="login-title">LOGIN</h1>
-        <Input value="Email" onChange={inputEvent} />
-        <Input value="Senha" onChange={inputEvent} />
-        <Link to="/movies">
-          <button className="btn-login2">FAZER LOGIN</button>
-        </Link>
-      </div>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="card-login">
+
+          <h1 className="login-title">LOGIN</h1>
+
+          <input
+            {...register('email', {
+              required: 'Campo obrigatório',
+            })}
+            type="text"
+            className={`input-default form-control base-input ${
+              errors.password ? 'is-invalid' : ''
+            }`}
+            placeholder="Email"
+            name="email"
+          />
+
+          <input 
+            {...register('password', {
+              required: 'Campo obrigatório',
+            })}
+            type="password"
+            className={`input-default form-control base-input ${
+              errors.password ? 'is-invalid' : ''
+            }`}
+            placeholder="Password"
+            name="password"
+          />
+
+          <button type="submit" className="btn-login2">
+            FAZER LOGIN
+          </button>
+
+        </div>
+      </form>
     </div>
   );
 };

@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
-import Input from 'components/Input';
+import { useState } from 'react';
 
 import './styles.css';
+import { requestBackendLogin } from 'util/request';
+import { error } from 'console';
+import { saveAuthData } from 'util/storage';
 
 type FormData = {
   email: string;
@@ -11,9 +13,16 @@ type FormData = {
 };
 
 const Login = () => {
+  const [hasError, setHasError] = useState(false);
+
   const onSubmit = (formData: FormData) => {
-    console.log(formData.email);
-    console.log(formData.password);
+    requestBackendLogin(formData)
+      .then((response) => {
+        console.info('usuario autenticado!');
+      })
+      .catch((error) => {
+        setHasError(true);
+      });
   };
 
   const {

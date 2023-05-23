@@ -1,27 +1,23 @@
 import { useForm } from 'react-hook-form';
 import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
-import { useState } from 'react';
 
 import './styles.css';
 import { requestBackendLogin } from 'util/request';
-import { error } from 'console';
-import { saveAuthData } from 'util/storage';
 
 type FormData = {
-  email: string;
+  username: string;
   password: string;
 };
 
 const Login = () => {
-  const [hasError, setHasError] = useState(false);
-
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
         console.info('usuario autenticado!');
+        console.log(response);
       })
       .catch((error) => {
-        setHasError(true);
+        console.info('erro de autenticação');
       });
   };
 
@@ -43,7 +39,7 @@ const Login = () => {
         <h1 className="login-title">LOGIN</h1>
 
         <input
-          {...register('email', {
+          {...register('username', {
             required: 'Campo obrigatório',
           })}
           type="text"
@@ -51,7 +47,7 @@ const Login = () => {
             errors.password ? 'is-invalid' : ''
           }`}
           placeholder="Email"
-          name="email"
+          name="username"
         />
 
         <input

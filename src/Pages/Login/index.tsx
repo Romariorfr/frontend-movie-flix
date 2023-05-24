@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
 import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
-
-import './styles.css';
+import { useContext, useState } from 'react';
 import { requestBackendLogin } from 'util/request';
 import { saveAuthData } from 'util/storage';
 import { useHistory } from 'react-router-dom';
+
+import './styles.css';
 
 type FormData = {
   username: string;
@@ -12,19 +13,20 @@ type FormData = {
 };
 
 const Login = () => {
-
   const history = useHistory();
+
+  const [hasError, setHasError] = useState(false);
 
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
-
         console.info('autenticado!');
         saveAuthData(response.data);
-        history.push("/movies");
+        setHasError(false);
+        history.push('/movies');
       })
       .catch((error) => {
-        console.info('erro de autenticação');
+        setHasError(true);
       });
   };
 
@@ -45,17 +47,29 @@ const Login = () => {
       <div className="card-login">
         <h1 className="login-title">LOGIN</h1>
 
+        {hasError && (
+          <div className="alert alert-danger">
+            Erro ao tentar efetuar o login
+          </div>
+        )}
         <input
           {...register('username', {
             required: 'Campo obrigatório',
+            pattern: {
+              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+              message: 'Email inválido',
+            },
           })}
           type="text"
-          className={`input-default form-control base-input ${
-            errors.password ? 'is-invalid' : ''
+          className={`form-control base-input ${
+            errors.username ? 'is-invalid' : ''
           }`}
           placeholder="Email"
           name="username"
         />
+        <div className="invalid-feedback d-block">
+          {errors.username?.message}
+        </div>
 
         <input
           {...register('password', {
@@ -68,6 +82,9 @@ const Login = () => {
           placeholder="Password"
           name="password"
         />
+        <div className="invalid-feedback d-block">
+          {errors.password?.message}
+        </div>
 
         <button type="submit" className="btn-login2">
           FAZER LOGIN

@@ -3,6 +3,8 @@ import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
 
 import './styles.css';
 import { requestBackendLogin } from 'util/request';
+import { saveAuthData } from 'util/storage';
+import { useHistory } from 'react-router-dom';
 
 type FormData = {
   username: string;
@@ -10,11 +12,16 @@ type FormData = {
 };
 
 const Login = () => {
+
+  const history = useHistory();
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
-        console.info('usuario autenticado!');
-        console.log(response);
+
+        console.info('autenticado!');
+        saveAuthData(response.data);
+        history.push("/movies");
       })
       .catch((error) => {
         console.info('erro de autenticação');

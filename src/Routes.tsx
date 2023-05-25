@@ -1,28 +1,39 @@
+import React from 'react';
+import { Router, Switch, Route } from 'react-router-dom';
+import PrivateRoute from 'util/PrivateRoute';
 import Header from 'components/Header';
 import Login from 'pages/Login';
 import Movies from 'pages/Movies';
 import MoviesId from 'pages/MoviesId';
+import history from 'util/history';
 
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-const Routes = () => (
-  <BrowserRouter>
+const Routes: React.FC = () => (
+  <Router history={history}>
     <Header />
     <Switch>
       <Route path="/" exact>
         <Login />
       </Route>
-      <Route path="/movies" exact>
-        <Movies />
-      </Route>
-      <Route path="/movies/1" exact>
-        <MoviesId />
-      </Route>
-      <Route path="/movies/2" exact>
-        <MoviesId />
-      </Route>
+      <PrivateRoute
+        path="/movies"
+        exact
+        component={Movies}
+        isAuthenticated={true}
+      />
+      <PrivateRoute
+        path="/movies/1"
+        exact
+        component={MoviesId}
+        isAuthenticated={false}
+      />
+      <PrivateRoute
+        path="/movies/2"
+        exact
+        component={MoviesId}
+        isAuthenticated={false}
+      />
     </Switch>
-  </BrowserRouter>
+  </Router>
 );
 
 export default Routes;

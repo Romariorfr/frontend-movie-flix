@@ -1,5 +1,7 @@
+import axios, { AxiosRequestConfig } from 'axios';
+import { getAuthData } from './storage';
+import history from './history';
 import qs from 'qs';
-import axios from 'axios';
 
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
@@ -31,3 +33,28 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers,
   });
 };
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+  const headers = config.withCredentials
+    ? {
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({ ...config, baseURL: BASE_URL, headers });
+};
+
+// Add a response interceptor
+axios.interceptors.response.use(
+  function (response) {
+    //
+    return response;
+  },
+  function (error) {
+    if (error.response.status === 401) {
+      history.push('/');
+    }
+    return Promise.reject(error);
+  }
+);

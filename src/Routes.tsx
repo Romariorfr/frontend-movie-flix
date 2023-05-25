@@ -1,4 +1,3 @@
-import React from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'util/PrivateRoute';
 import Header from 'components/Header';
@@ -7,7 +6,7 @@ import Movies from 'pages/Movies';
 import MoviesId from 'pages/MoviesId';
 import history from 'util/history';
 
-const Routes: React.FC = () => (
+const Routes = () => (
   <Router history={history}>
     <Header />
     <Switch>

@@ -6,6 +6,9 @@ import Movies from 'pages/Movies';
 import MoviesId from 'pages/MoviesId';
 import history from 'util/history';
 
+//devo criar uma função para verificar se o usuario está autenticado e como resposta retorne um boleano
+//repasso a função como resposta em isAuthenticated
+
 const Routes = () => (
   <Router history={history}>
     <Header />

@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { requestBackendLogin } from 'util/request';
 import { saveAuthData } from 'util/storage';
 import { useHistory } from 'react-router-dom';
 
 import './styles.css';
+import { AuthContext } from 'util/AuthContext';
+import { getTokenData } from 'util/auth';
 
 type FormData = {
   username: string;
@@ -17,12 +19,18 @@ const Login = () => {
 
   const [hasError, setHasError] = useState(false);
 
+  const { setAuthContextData } = useContext(AuthContext);
+
   const onSubmit = (formData: FormData) => {
     requestBackendLogin(formData)
       .then((response) => {
-        console.info('autenticado!');
         saveAuthData(response.data);
         setHasError(false);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        });
+
         history.push('/movies');
       })
       .catch((error) => {

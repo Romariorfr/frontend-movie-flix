@@ -3,13 +3,42 @@ import './styles.css';
 import { ReactComponent as Estrela } from 'assets/images/Star.svg';
 import { useParams } from 'react-router-dom';
 
+import { useEffect, useState } from 'react';
+import { requestBackend } from 'util/request';
+import { AxiosRequestConfig } from 'axios';
+
 type urlParams = {
   movieId: string;
 };
 
-const MoviesId = () => {
+type Review = {
+  id: number;
+  text: string;
+  movieId: number;
+  user: {
+    id: number;
+    name: string;
+    email: string;
+  };
+};
 
-  const {movieId} = useParams<urlParams>();
+const MoviesId = () => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+
+  const { movieId } = useParams<urlParams>();
+
+  useEffect(() => {
+    const config: AxiosRequestConfig = {
+      method: 'GET',
+      url: `/movies/${movieId}/reviews`,
+      withCredentials: true,
+    };
+
+    requestBackend(config).then((response) => {
+      setReviews(response.data);
+    });
+  }, [movieId]);
+
   return (
     <div className="movieid-container">
       <h1>Tela de detalhes do filme id:{movieId}</h1>
@@ -18,31 +47,9 @@ const MoviesId = () => {
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
       </div>
       <div className="comentario-container">
-        <div className="comentario-card">
-          <div className="topo-comentario">
-            <Estrela />
-            <h4>Maria Silva</h4>
-          </div>
-          <div className="corpo-comentario">
-            <p>
-              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
-            </p>
-          </div>
-        </div>
 
-        <div className="comentario-card">
-          <div className="topo-comentario">
-            <Estrela />
-            <h4>Maria Silva</h4>
-          </div>
-          <div className="corpo-comentario">
-            <p>
-              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
-            </p>
-          </div>
-        </div>
 
-        <div className="comentario-card">
+        {<div className="comentario-card">
           <div className="topo-comentario">
             <Estrela />
             <h4>Maria Silva</h4>
@@ -52,19 +59,8 @@ const MoviesId = () => {
               Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
             </p>
           </div>
-        </div>
+        </div>}
 
-        <div className="comentario-card">
-          <div className="topo-comentario">
-            <Estrela />
-            <h4>Maria Silva</h4>
-          </div>
-          <div className="corpo-comentario">
-            <p>
-              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
-            </p>
-          </div>
-        </div>
       </div>
     </div>
   );

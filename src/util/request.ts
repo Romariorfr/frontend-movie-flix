@@ -4,7 +4,7 @@ import history from './history';
 import qs from 'qs';
 
 export const BASE_URL =
-  process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
+  process.env.REACT_APP_BACKEND_URL ?? 'https://movieflix-devsuperior.herokuapp.com';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'myclientid';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'myclientsecret';

@@ -1,11 +1,18 @@
 import Input from 'components/Input';
 import './styles.css';
 import { ReactComponent as Estrela } from 'assets/images/Star.svg';
+import { useParams } from 'react-router-dom';
+
+type urlParams = {
+  movieId: string;
+};
 
 const MoviesId = () => {
+
+  const {movieId} = useParams<urlParams>();
   return (
     <div className="movieid-container">
-      <h1>Tela de detalhes do filme id:1</h1>
+      <h1>Tela de detalhes do filme id:{movieId}</h1>
       <div className="avaliacao-card">
         <Input value="Deixe sua avaliação aqui" onChange={() => {}} />
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
@@ -13,7 +20,7 @@ const MoviesId = () => {
       <div className="comentario-container">
         <div className="comentario-card">
           <div className="topo-comentario">
-            <Estrela/>
+            <Estrela />
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -25,7 +32,7 @@ const MoviesId = () => {
 
         <div className="comentario-card">
           <div className="topo-comentario">
-          <Estrela/>
+            <Estrela />
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -37,7 +44,7 @@ const MoviesId = () => {
 
         <div className="comentario-card">
           <div className="topo-comentario">
-          <Estrela/>
+            <Estrela />
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">
@@ -48,8 +55,8 @@ const MoviesId = () => {
         </div>
 
         <div className="comentario-card">
-          <div className="topo-comentario"> 
-          <Estrela/>
+          <div className="topo-comentario">
+            <Estrela />
             <h4>Maria Silva</h4>
           </div>
           <div className="corpo-comentario">

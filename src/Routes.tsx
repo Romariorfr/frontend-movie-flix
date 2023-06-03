@@ -21,13 +21,7 @@ const Routes = () => (
         isAuthenticated={isAuthenticated()}
       />
       <PrivateRoute
-        path="/movies/1"
-        exact
-        component={MoviesId}
-        isAuthenticated={isAuthenticated()}
-      />
-      <PrivateRoute
-        path="/movies/2"
+        path="/movies/:movieId"
         exact
         component={MoviesId}
         isAuthenticated={isAuthenticated()}

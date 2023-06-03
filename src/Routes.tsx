@@ -5,9 +5,7 @@ import Login from 'pages/Login';
 import Movies from 'pages/Movies';
 import MoviesId from 'pages/MoviesId';
 import history from 'util/history';
-
-//devo criar uma função para verificar se o usuario está autenticado e como resposta retorne um boleano
-//repasso a função como resposta em isAuthenticated
+import { isAuthenticated } from 'util/auth';
 
 const Routes = () => (
   <Router history={history}>
@@ -20,19 +18,19 @@ const Routes = () => (
         path="/movies"
         exact
         component={Movies}
-        isAuthenticated={true}
+        isAuthenticated={isAuthenticated()}
       />
       <PrivateRoute
         path="/movies/1"
         exact
         component={MoviesId}
-        isAuthenticated={false}
+        isAuthenticated={isAuthenticated()}
       />
       <PrivateRoute
         path="/movies/2"
         exact
         component={MoviesId}
-        isAuthenticated={false}
+        isAuthenticated={isAuthenticated()}
       />
     </Switch>
   </Router>

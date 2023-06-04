@@ -47,20 +47,17 @@ const MoviesId = () => {
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
       </div>
       <div className="comentario-container">
-
-
-        {<div className="comentario-card">
-          <div className="topo-comentario">
-            <Estrela />
-            <h4>Maria Silva</h4>
+        {reviews.map((review) => (
+          <div key={review.id} className="comentario-card">
+            <div className="topo-comentario">
+              <Estrela />
+              <h4>{review.user.name}</h4>
+            </div>
+            <div className="corpo-comentario">
+              <p>{review.text}</p>
+            </div>
           </div>
-          <div className="corpo-comentario">
-            <p>
-              Gostei muito do filme. Foi muito bom mesmo. Pena que durou pouco.
-            </p>
-          </div>
-        </div>}
-
+        ))}
       </div>
     </div>
   );

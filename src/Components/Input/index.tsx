@@ -13,6 +13,7 @@ const Input: React.FC<InputProps> = ({ value, onChange }) => {
       type="text "
       value={value}
       onChange={onChange}
+      placeholder='Deixe sua avaliação aqui'
     /> 
   );
 };

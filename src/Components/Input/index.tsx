@@ -9,8 +9,9 @@ interface InputProps {
 const Input: React.FC<InputProps> = ({ value, onChange }) => {
   return (
     <input
-      className="input-default"
+      className=" form-control base-input"
       type="text "
+      name='review'
       value={value}
       onChange={onChange}
       placeholder='Deixe sua avaliação aqui'

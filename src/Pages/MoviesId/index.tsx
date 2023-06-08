@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { AxiosRequestConfig } from 'axios';
+import { useForm } from 'react-hook-form';
 
 import { ReactComponent as Estrela } from 'assets/images/Star.svg';
 import { requestBackend } from 'util/request';
@@ -8,9 +9,14 @@ import { requestBackend } from 'util/request';
 import Input from 'components/Input';
 
 import './styles.css';
+import { getAuthData } from 'util/storage';
 
 type urlParams = {
   movieId: string;
+};
+
+type FormData = {
+  review: string;
 };
 
 type Review = {
@@ -49,27 +55,48 @@ const MoviesId = () => {
     });
   }, [movieId]);
 
+  const { handleSubmit } = useForm<FormData>();
+
+  const config: AxiosRequestConfig = {
+    method: 'POST',
+    url: '/reviews',
+    data: {
+      text: avaliation,
+      movieId: movieId,
+    },
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getAuthData().access_token}`,
+    },
+  };
+
+  const onSubmit = () => {
+    requestBackend(config).then((response) => console.log('passou'));
+  };
+
   return (
-    <div className="movieid-container">
-      <h1>Tela de detalhes do filme id:{movieId}</h1>
-      <div className="avaliacao-card">
-        <Input value={avaliation} onChange={handleAvaliationChange} />
-        <button className="btn-login">SALVAR AVALIAÇÃO</button>
-      </div>
-      <div className="comentario-container">
-        {reviews.map((review) => (
-          <div key={review.id} className="comentario-card">
-            <div className="topo-comentario">
-              <Estrela />
-              <h4>{review.user.name}</h4>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div className="movieid-container">
+        <h1>Tela de detalhes do filme id:{movieId}</h1>
+        <div className="avaliacao-card">
+          <Input value={avaliation} onChange={handleAvaliationChange} />
+          <button className="btn-login">SALVAR AVALIAÇÃO</button>
+        </div>
+        <div className="comentario-container">
+          {reviews.map((review) => (
+            <div key={review.id} className="comentario-card">
+              <div className="topo-comentario">
+                <Estrela />
+                <h4>{review.user.name}</h4>
+              </div>
+              <div className="corpo-comentario">
+                <p>{review.text}</p>
+              </div>
             </div>
-            <div className="corpo-comentario">
-              <p>{review.text}</p>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </form>
   );
 };
 

@@ -9,7 +9,7 @@
   border: 1px solid #fefefe;
   padding: 14px;
 }
-
+ 
 @media (min-width: 576px) {
   .input-default {
     width: 100%;

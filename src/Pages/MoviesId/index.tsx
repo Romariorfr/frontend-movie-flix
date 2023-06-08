@@ -53,7 +53,7 @@ const MoviesId = () => {
     <div className="movieid-container">
       <h1>Tela de detalhes do filme id:{movieId}</h1>
       <div className="avaliacao-card">
-        <Input value={avaliation} onChange={handleAvaliationChange}/>
+        <Input value={avaliation} onChange={handleAvaliationChange} />
         <button className="btn-login">SALVAR AVALIAÇÃO</button>
       </div>
       <div className="comentario-container">

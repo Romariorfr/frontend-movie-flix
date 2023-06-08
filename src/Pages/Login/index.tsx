@@ -4,10 +4,10 @@ import { useContext, useState } from 'react';
 import { requestBackendLogin } from 'util/request';
 import { saveAuthData } from 'util/storage';
 import { useHistory } from 'react-router-dom';
-
-import './styles.css';
 import { AuthContext } from 'util/AuthContext';
 import { getTokenData } from 'util/auth';
+
+import './styles.css';
 
 type FormData = {
   username: string;
@@ -56,9 +56,7 @@ const Login = () => {
         <h1 className="login-title">LOGIN</h1>
 
         {hasError && (
-          <div className="alert alert-danger">
-            Erro ao tentar efetuar o login
-          </div>
+          <div className="alert">Erro ao tentar efetuar o login</div>
         )}
         <input
           {...register('username', {

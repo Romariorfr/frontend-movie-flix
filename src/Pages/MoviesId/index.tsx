@@ -10,6 +10,7 @@ import Input from 'components/Input';
 
 import './styles.css';
 import { getAuthData } from 'util/storage';
+import { hasAnyRoles } from 'util/auth';
 
 type urlParams = {
   movieId: string;
@@ -53,7 +54,7 @@ const MoviesId = () => {
     requestBackend(config).then((response) => {
       setReviews(response.data);
     });
-  }, [movieId]);
+  }, [movieId, reviews]);
 
   const { handleSubmit } = useForm<FormData>();
 
@@ -71,17 +72,22 @@ const MoviesId = () => {
   };
 
   const onSubmit = () => {
-    requestBackend(config).then((response) => console.log('passou'));
+    requestBackend(config).then((response) => {
+      setReviews([...reviews, response.data]);
+      setAvaliation('');
+    });
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="movieid-container">
         <h1>Tela de detalhes do filme id:{movieId}</h1>
-        <div className="avaliacao-card">
-          <Input value={avaliation} onChange={handleAvaliationChange} />
-          <button className="btn-login">SALVAR AVALIAÇÃO</button>
-        </div>
+        {hasAnyRoles(['ROLE_MEMBER']) && (
+          <div className="avaliacao-card">
+            <Input value={avaliation} onChange={handleAvaliationChange} />
+            <button className="btn-login">SALVAR AVALIAÇÃO</button>
+          </div>
+        )}
         <div className="comentario-container">
           {reviews.map((review) => (
             <div key={review.id} className="comentario-card">

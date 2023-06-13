@@ -23,7 +23,11 @@ const Header = () => {
     }
   }, [setAuthContextData]);
 
-  const handleLogoutClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLogoutClick = (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | React.MouseEvent<HTMLAnchorElement>
+  ) => {
     event.preventDefault();
     removeAuthData();
     setAuthContextData({
@@ -34,7 +38,7 @@ const Header = () => {
 
   return (
     <div className="header">
-      <Link to="/">
+      <Link to="/" onClick={handleLogoutClick}>
         <h1>Movie Flix</h1>
       </Link>
       {authContextData.authenticated ? (

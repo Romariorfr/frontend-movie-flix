@@ -32,7 +32,12 @@ type Review = {
 const MoviesId = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const { movieId } = useParams<urlParams>();
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<FormData>();
 
   useEffect(() => {
     fetchReviews();
@@ -73,10 +78,17 @@ const MoviesId = () => {
         {hasAnyRoles(['ROLE_MEMBER']) && (
           <div className="avaliacao-card">
             <input
-              {...register('avaliation')}
-              className="input-default form-control base-input"
+              {...register('avaliation', { required: 'Campo Obrigatório' })}
+              type="text"
+              className={`form-control base-input ${
+                errors.avaliation ? 'is-invalid' : ''
+              }`}
               placeholder="Deixe sua avaliação aqui"
             />
+            <div className="invalid-feedback d-block">
+              {errors.avaliation?.message}
+            </div>
+
             <button className="btn-login">SALVAR AVALIAÇÃO</button>
           </div>
         )}

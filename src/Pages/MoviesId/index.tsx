@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { AxiosRequestConfig } from 'axios';
 import { useForm } from 'react-hook-form';
 
 import { ReactComponent as Estrela } from 'assets/images/Star.svg';
 import { requestBackend } from 'util/request';
 
-import Input from 'components/Input';
-
-import './styles.css';
 import { getAuthData } from 'util/storage';
 import { hasAnyRoles } from 'util/auth';
+
+import './styles.css';
 
 type urlParams = {
   movieId: string;
 };
 
 type FormData = {
-  review: string;
+  avaliation: string;
 };
 
 type Review = {
@@ -33,58 +31,52 @@ type Review = {
 
 const MoviesId = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
-
   const { movieId } = useParams<urlParams>();
-
-  const [avaliation, setAvaliation] = useState('');
-
-  const handleAvaliationChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setAvaliation(event.target.value);
-  };
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
   useEffect(() => {
-    const config: AxiosRequestConfig = {
+    fetchReviews();
+  });
+
+  const fetchReviews = async () => {
+    const response = await requestBackend({
       method: 'GET',
       url: `/movies/${movieId}/reviews`,
       withCredentials: true,
-    };
-
-    requestBackend(config).then((response) => {
-      setReviews(response.data);
     });
-  }, [movieId, reviews]);
-
-  const { handleSubmit } = useForm<FormData>();
-
-  const config: AxiosRequestConfig = {
-    method: 'POST',
-    url: '/reviews',
-    data: {
-      text: avaliation,
-      movieId: movieId,
-    },
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${getAuthData().access_token}`,
-    },
+    setReviews(response.data);
   };
 
-  const onSubmit = () => {
-    requestBackend(config).then((response) => {
-      setReviews([...reviews, response.data]);
-      setAvaliation('');
-    });
+  const submitReview = async (data: FormData) => {
+    const config = {
+      method: 'POST',
+      url: '/reviews',
+      data: {
+        text: data?.avaliation,
+        movieId: movieId,
+      },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${getAuthData().access_token}`,
+      },
+    };
+
+    await requestBackend(config);
+    reset();
+    fetchReviews();
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(submitReview)}>
       <div className="movieid-container">
         <h1>Tela de detalhes do filme id:{movieId}</h1>
         {hasAnyRoles(['ROLE_MEMBER']) && (
           <div className="avaliacao-card">
-            <Input value={avaliation} onChange={handleAvaliationChange} />
+            <input
+              {...register('avaliation')}
+              className="input-default form-control base-input"
+              placeholder="Deixe sua avaliação aqui"
+            />
             <button className="btn-login">SALVAR AVALIAÇÃO</button>
           </div>
         )}

@@ -58,6 +58,7 @@ const Login = () => {
         {hasError && (
           <div className="alert">Erro ao tentar efetuar o login</div>
         )}
+
         <input
           {...register('username', {
             required: 'Campo obrigatório',

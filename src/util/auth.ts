@@ -19,7 +19,6 @@ export const getTokenData = (): TokenData | undefined => {
 
 export const isAuthenticated = (): boolean => {
   let tokenData = getTokenData();
-  console.log("rodando a função isAuthenticated()")
   return tokenData && tokenData.exp * 1000 > Date.now() ? true : false;
 };
 

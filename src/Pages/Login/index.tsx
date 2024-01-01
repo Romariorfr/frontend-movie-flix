@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { ReactComponent as BannerImage } from 'assets/images/Banner.svg';
+import { ReactComponent as BannerImage } from 'Assets/images/Banner.svg';
 import { useContext, useState } from 'react';
 import { requestBackendLogin } from 'util/request';
 import { saveAuthData } from 'util/storage';

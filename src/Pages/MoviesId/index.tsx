@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 
-import { ReactComponent as Estrela } from 'assets/images/Star.svg';
+import { ReactComponent as Estrela } from 'Assets/images/Star.svg';
 import { requestBackend } from 'util/request';
 
 import { getAuthData } from 'util/storage';
@@ -41,15 +41,19 @@ const MoviesId = () => {
 
   useEffect(() => {
     fetchReviews();
-  });
+  }, [movieId]);
 
   const fetchReviews = async () => {
-    const response = await requestBackend({
-      method: 'GET',
-      url: `/movies/${movieId}/reviews`,
-      withCredentials: true,
-    });
-    setReviews(response.data);
+    try {
+      const response = await requestBackend({
+        method: 'GET',
+        url: `/movies/${movieId}/reviews`,
+        withCredentials: true,
+      });
+      setReviews(response.data);
+    } catch (error) {
+      console.error('Failed to fetch reviews:', error);
+    }
   };
 
   const submitReview = async (data: FormData) => {

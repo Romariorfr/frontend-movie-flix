@@ -43,17 +43,21 @@ const Movies = () => {
       <Link to="/movies/1">
         <div className="movie-card-container">
           <Movie1 />
-          <h3>O Retorno do Rei</h3>
-          <h5>2013</h5>
-          <h6>O olho do inimigo está se movendo.</h6>
+          <div className="movie-card-titles">
+            <h3>O Retorno do Rei</h3>
+            <h5>2013</h5>
+            <h6>O olho do inimigo está se movendo.</h6>
+          </div>
         </div>
       </Link>
       <Link to="/movies/2">
         <div className="movie-card-container">
           <Movie1 />
-          <h3>O Retorno do Rei</h3>
-          <h5>2013</h5>
-          <h6>O olho do inimigo está se movendo.</h6>
+          <div className="movie-card-titles">
+            <h3>O Retorno do Rei</h3>
+            <h5>2013</h5>
+            <h6>O olho do inimigo está se movendo.</h6>
+          </div>
         </div>
       </Link>
     </div>

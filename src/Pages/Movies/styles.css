@@ -73,8 +73,6 @@
 .movie-card-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   border-radius: 4px;
   background: #6C6C6C;
@@ -82,6 +80,17 @@
   margin-top: 20px;
   padding-top: 26px;
   height: 322px;
+  padding-left: 10px;
+
+}
+
+.movie-card-titles {
+  display: flex;
+  margin-top: 10px;
+  flex-direction: column;
+  padding-left: 15px;
+  padding-right: 15px;
+
 }
 
 .movie-card-container h3 {
@@ -92,6 +101,8 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.3px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .movie-card-container h5 {
@@ -102,6 +113,8 @@
   font-weight: 700;
   line-height: normal;
   letter-spacing: -0.24px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .movie-card-container h6 {

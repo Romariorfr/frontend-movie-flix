@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Movies } from 'type/movies';
 import { MoviePage } from 'type/vendor/movieflix';
-import { requestBackend } from 'util/request';
+import { requestBackend } from 'util/requests';
 
 import './styles.css';
 

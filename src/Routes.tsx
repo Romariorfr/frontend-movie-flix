@@ -1,33 +1,33 @@
-import { Router, Switch, Route } from 'react-router-dom';
-import PrivateRoute from 'util/PrivateRoute';
-import Header from 'Components/Header';
-import Login from 'Pages/Login';
-import Movies from 'Pages/Private/Movies';
-import MoviesId from 'Pages/Private/MoviesId';
+import { Route, Router, Switch } from 'react-router-dom';
+import Home from 'pages/Home';
+import Navbar from 'Components/Navbar';
 import history from 'util/history';
-import { isAuthenticated } from 'util/auth';
+import PrivateRoute from 'Components/PrivateRoute';
+import Movie from 'pages/Home/Private/MovieCatalog';
+import MovieDetails from 'pages/Home/Private/MovieDetails';
 
 const Routes = () => (
   <Router history={history}>
-    <Header />
+    <Navbar />
     <Switch>
       <Route path="/" exact>
-        <Login />
+        <Home />
       </Route>
-      <PrivateRoute
-        path="/movies"
-        exact
-        component={Movies}
-        isAuthenticated={isAuthenticated()}
-      />
-      <PrivateRoute
-        path="/movies/:movieId"
-        exact
-        component={MoviesId}
-        isAuthenticated={isAuthenticated()}
-      />
+      <PrivateRoute path="/movies">
+        <Route path="/movies" exact>
+          <Movie />
+        </Route>
+        <Route path="/movies/:movieId" exact>
+          <MovieDetails />
+        </Route>
+      </PrivateRoute>
     </Switch>
   </Router>
 );
 
 export default Routes;
+
+/*        <Redirect from="/movies" to="/movies" exact />
+        <Route path="/movies">
+          <Movies />
+        </Route>*/

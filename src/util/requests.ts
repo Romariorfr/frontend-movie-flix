@@ -1,10 +1,11 @@
+import { getAuthData } from 'util/storage';
 import axios, { AxiosRequestConfig } from 'axios';
-import { getAuthData } from './storage';
-import history from './history';
 import qs from 'qs';
+import history from './history';
 
 export const BASE_URL =
-  process.env.REACT_APP_BACKEND_URL ?? 'https://movieflix-devsuperior.herokuapp.com';
+  process.env.REACT_APP_BACKEND_URL ??
+  'https://movieflix-devsuperior.herokuapp.com';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'myclientid';
 const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET ?? 'myclientsecret';
@@ -45,10 +46,17 @@ export const requestBackend = (config: AxiosRequestConfig) => {
   return axios({ ...config, baseURL: BASE_URL, headers });
 };
 
-// Add a response interceptor
+axios.interceptors.request.use(
+  function (config) {
+    return config;
+  },
+  function (error) {
+    return Promise.reject(error);
+  }
+);
+
 axios.interceptors.response.use(
   function (response) {
-    //
     return response;
   },
   function (error) {

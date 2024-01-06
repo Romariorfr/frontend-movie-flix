@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import Select from 'react-select';
 import { Genre } from 'type/genre';
-import { requestBackend } from 'util/request';
+import { requestBackend } from 'util/requests';
 
 import './styles.css';
 

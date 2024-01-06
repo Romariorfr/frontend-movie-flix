@@ -2,8 +2,8 @@ import { Router, Switch, Route } from 'react-router-dom';
 import PrivateRoute from 'util/PrivateRoute';
 import Header from 'Components/Header';
 import Login from 'Pages/Login';
-import Movies from 'Pages/Movies';
-import MoviesId from 'Pages/MoviesId';
+import Movies from 'Pages/Private/Movies';
+import MoviesId from 'Pages/Private/MoviesId';
 import history from 'util/history';
 import { isAuthenticated } from 'util/auth';
 

@@ -1,7 +1,6 @@
+# Projeto Movie Flix - 🚀 Concluído
+### Bem-vindo ao Movie Flix, um aplicativo de streaming para filmes e séries.
 
-# Projeto Movie Flix - :construction: Em Construção
-### Este é um projeto em construção chamado Movie Flix. Ele é um aplicativo para streaming de filmes e séries.
+## Conclusão do Desafio
 
-## Status
-
-O projeto é um desafio lançado pela escola de programação devSuperior com foco em colocar em pratica os conhecimentos adquiridos durante as aulas.
+Este projeto marca a conclusão bem-sucedida do desafio proposto pela escola de programação devSuperior. Aqui, os conhecimentos adquiridos durante as aulas foram aplicados de forma prática.

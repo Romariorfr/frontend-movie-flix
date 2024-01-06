@@ -41,19 +41,15 @@ const MoviesId = () => {
 
   useEffect(() => {
     fetchReviews();
-  }, [movieId]);
+  });
 
   const fetchReviews = async () => {
-    try {
-      const response = await requestBackend({
-        method: 'GET',
-        url: `/movies/${movieId}/reviews`,
-        withCredentials: true,
-      });
-      setReviews(response.data);
-    } catch (error) {
-      console.error('Failed to fetch reviews:', error);
-    }
+    const response = await requestBackend({
+      method: 'GET',
+      url: `/movies/${movieId}/reviews`,
+      withCredentials: true,
+    });
+    setReviews(response.data);
   };
 
   const submitReview = async (data: FormData) => {

@@ -1,4 +1,4 @@
-# Projeto Movie Flix - 🚀 Concluído
+# Projeto Movie Flix - Frontend
 ### Bem-vindo ao Movie Flix, um aplicativo de streaming para filmes e séries.
 
 ## Conclusão do Desafio
